@@ -3,11 +3,17 @@
 <p> Name: <%= @restaurant.name %> </p>
 <p> Category: <%= @restaurant.category %> </p>
 <p> Phone Number: <%= @restaurant.phone_number %> </p>
-<p> Phone Number: <%= @restaurant.address %> </p>
+<p> Address: <%= @restaurant.address %> </p>
 
-<p><%= link_to 'Edit this Restaurant', edit_restaurant_path(@restaurant) %></p>
+<div>
+<h2>Reviews</h2>
+<ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %></li>
+      <li class="list-group-item"><%= review.rating %></li>
+    <% end %>
+</ul>
+</div>
 
-<p>
-  <%= link_to 'Remove this Restaurant', restaurant_path(@restaurant), method: :delete, data: { confirm: "Are you sure?" } %>
-</p>
+<p><%= link_to 'Review Restaurant', new_restaurant_review_path(@restaurant) %></p>
 <p><%= link_to 'Back To Restaurants List', restaurants_path %></p>
